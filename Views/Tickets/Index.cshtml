@@ -1,0 +1,89 @@
+@model IEnumerable<Tasks.Models.Ticket>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1> Open Tickets</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.projectObj)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Description)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.StartDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.EndDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.userObj)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ticketTypeObj)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.statusObj)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.priorityObj)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+    @if (item.statusObj.Name != "Closed")
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.projectObj.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.StartDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EndDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.userObj.FullName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ticketTypeObj.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.statusObj.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.priorityObj.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IsActive)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+            </td>
+        </tr>
+        }
+    }
+    </tbody>
+</table>
